@@ -1,0 +1,12 @@
+
+from flask import Flask
+import os
+
+def create_app(config_name):
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_pyfile('config.py')
+
+    from api.route import home
+    app.register_blueprint(home.home)
+
+    return app
